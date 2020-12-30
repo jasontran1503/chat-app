@@ -1,0 +1,11 @@
+.chat-page {
+  width: 100%;
+  display: flex;
+  .chat-search-user {
+    width: 25%;
+    background-color: #f5f7fb;
+  }
+  .chat-home {
+    width: 75%;
+  }
+}

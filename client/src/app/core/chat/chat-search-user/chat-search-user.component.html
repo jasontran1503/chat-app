@@ -1,0 +1,48 @@
+<div class="search-user mt-4">
+  <div class="input-group mb-2">
+    <div class="input-group-prepend">
+      <div class="input-group-text"><i class="fa fa-search"></i></div>
+    </div>
+    <input type="text" class="form-control" [formControl]="userSearch" />
+  </div>
+</div>
+
+<div class="list-user">
+  <ul class="list-group">
+    <div *ngIf="listUser.length === 0">
+      <div
+        *ngFor="let room of availableRooms"
+        (click)="goToChatRoom(room.friendChat)"
+      >
+        <li
+          class="list-group-item"
+          [ngClass]="
+            room.friendChat.username === nameFriendChat ? 'user-selected' : ''
+          "
+        >
+          <img
+            class="user-avatar"
+            [src]="room.friendChat.avatar"
+            [routerLink]="['/user', room.friendChat.username]"
+          />
+          <span class="username bold">{{ room.friendChat.username }}</span>
+        </li>
+      </div>
+    </div>
+    <div *ngIf="listUser.length > 0">
+      <div *ngFor="let user of listUser" (click)="goToChatRoom(user)">
+        <li
+          class="list-group-item"
+          [ngClass]="user.username === nameFriendChat ? 'user-selected' : ''"
+        >
+          <img
+            class="user-avatar"
+            [src]="user.avatar"
+            [routerLink]="['/user', user.username]"
+          />
+          <span class="username bold">{{ user.username }}</span>
+        </li>
+      </div>
+    </div>
+  </ul>
+</div>

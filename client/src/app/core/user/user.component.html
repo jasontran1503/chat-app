@@ -1,0 +1,75 @@
+<ng-container *ngIf="user$ | async as user">
+  <div
+    class="mb-5 d-flex flex-column profile"
+    [style.background-image]="'url(' + user.background + ')'"
+  >
+    <img class="avatar img-fluid" [src]="user.avatar" />
+    <div class="image-upload" (click)="showUploadModal('avatar')" *ngIf="!isDisplay">
+      <i class="fa fa-camera avatar-upload"></i>
+    </div>
+    <div class="image-upload" (click)="showUploadModal('background')" *ngIf="!isDisplay">
+      <i class="fa fa-camera bg-upload"></i>
+    </div>
+  </div>
+
+  <div class="user-info">
+    <h2>{{ user.username }}</h2>
+    <div class="d-flex justify-content-center">
+      <app-follow-button [user]="user"></app-follow-button>
+      <button class="btn-message ml-3" *ngIf="isDisplay" (click)="goToChatRoom()">
+        <i class="fa fa-paper-plane-o mr-1"> </i>
+        Nhắn tin
+      </button>
+    </div>
+  </div>
+
+  <div class="container user-list-help">
+    <span
+      class="item"
+      [routerLink]="['/', 'user', user.username, 'followers']"
+      routerLinkActive="active"
+      >Người theo dõi</span
+    >
+    <span
+      class="item"
+      [routerLink]="['/', 'user', user.username, 'following']"
+      routerLinkActive="active"
+      >Đang theo dõi</span
+    >
+  </div>
+</ng-container>
+
+<router-outlet></router-outlet>
+
+<ng-template #uploadModal>
+  <div class="modal-header">
+    <h5 class="modal-title bold">{{ titleUploadModal }}</h5>
+    <button class="close" type="button" (click)="close()">
+      <span>&times;</span>
+    </button>
+  </div>
+
+  <div class="modal-body d-flex flex-column">
+    <img
+      [src]="imageUrl"
+      class="img-thumbnail"
+      *ngIf="imageUrl"
+      [ngClass]="typeImage === 'avatar' ? 'avatar' : 'bg-img'"
+    />
+    <input
+      type="text"
+      class="d-none"
+      type="file"
+      accept="image/*"
+      #fileInput
+      (change)="selectedImage($event)"
+    />
+    <button class="btn-color w-50 m-auto" (click)="fileInput.click()">
+      Tải ảnh lên
+    </button>
+  </div>
+
+  <div class="modal-footer p-1" *ngIf="imageUrl">
+    <button type="button" class="btn-color" (click)="uploadImage()">Cập nhật</button>
+  </div>
+</ng-template>

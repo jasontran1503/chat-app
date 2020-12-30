@@ -1,0 +1,12 @@
+<button
+  type="submit"
+  class="btn-color"
+  (click)="toggleFollow()"
+  *ngIf="isDisplay"
+>
+  <i
+    class="fa mr-2"
+    [ngClass]="isFollow ? 'fa-check-circle' : 'fa-plus-circle'"
+  ></i>
+  {{ isFollow ? "Đang theo dõi" : "Theo dõi" }}
+</button>

@@ -1,0 +1,47 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container">
+    <div class="btn btn-white bold" routerLink="/chat">CHAT</div>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item bold">
+          <a class="nav-link" routerLink="/chat" routerLinkActive="active"
+            >Chat</a
+          >
+        </li>
+        <li class="nav-item" *ngIf="!user">
+          <div class="btn btn-white bold" routerLink="/auth/login">
+            <i class="fa fa-sign-in mr-1"></i> Đăng nhập
+          </div>
+        </li>
+        <li class="nav-item bold" *ngIf="user">
+          <a
+            class="nav-link"
+            [routerLink]="['/user', user.username]"
+            routerLinkActive="active"
+          >
+            <i class="fa fa-user-circle-o mr-2"></i>
+            {{ user.username }}</a
+          >
+        </li>
+        <li class="nav-item" *ngIf="user" (click)="logout()">
+          <div class="btn btn-white bold">
+            <i class="fa fa-sign-out mr-1"></i> Đăng xuất
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<router-outlet></router-outlet>

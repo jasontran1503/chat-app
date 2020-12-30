@@ -1,0 +1,16 @@
+<ng-container *ngIf="listUser$ | async as listUser">
+  <div class="container user-list" *ngFor="let user of listUser.data">
+    <div class="user-item">
+      <img class="user-avatar" [src]="user.avatar" />
+      <div class="ml-2 mt-2" (click)="navigateToUserPage(user.username)">
+        <span class="bold" [routerLink]="['/', 'user', user.username]">{{
+          user.username
+        }}</span>
+      </div>
+    </div>
+    <app-follow-button [user]="user"></app-follow-button>
+  </div>
+  <p *ngIf="listUser.data.length === 0" class="text-center mt-3 bold">
+    Không có dữ liệu!!!
+  </p>
+</ng-container>

@@ -1,0 +1,42 @@
+.modal-success {
+  border: 2px solid #18cf42;
+  background-color: #18cf42;
+}
+
+.modal-error {
+  border: 2px solid #dc3545;
+  background-color: #dc3545;
+}
+
+.modal-warning {
+  border: 2px solid #ffc107;
+  background-color: #ffc107;
+}
+
+.modal-info {
+  border: 2px solid #007bff;
+  background-color: #007bff;
+}
+
+.modal-body {
+  display: flex;
+  width: 400px;
+  height: 70px;
+  padding: 0;
+  .toast-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .toast-icon {
+    width: 20%;
+    .fa {
+      color: white;
+      font-size: 20px;
+    }
+  }
+  .toast-content {
+    width: 80%;
+    background-color: white;
+  }
+}

@@ -1,0 +1,14 @@
+.btn-white {
+  color: #212529;
+  background-color: white;
+  border: 2px solid white;
+  margin-bottom: 5px;
+  &:hover {
+    color: white;
+    background-color: #d1d5e2;
+  }
+}
+
+.nav-item {
+  margin-left: 10px;
+}

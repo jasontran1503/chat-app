@@ -1,0 +1,47 @@
+<div class="chat-header">
+  <img
+    [src]="friendChat?.avatar"
+    class="chat-avatar"
+    [routerLink]="['/user', friendChat?.username]"
+  />
+  <span
+    class="chat-username bold"
+    [routerLink]="['/user', friendChat?.username]"
+    >{{ friendChat?.username }}</span
+  >
+</div>
+<div class="chat-conversation" #scrollChat>
+  <div class="chat-container" *ngFor="let item of conversation">
+    <!-- Receiver -->
+    <div class="inline-container" *ngIf="item.sender._id !== currentUser?._id">
+      <img class="user-avatar" [src]="item.sender.avatar" />
+      <div class="receiver chat-message">
+        <h6>{{ item.sender.username }}</h6>
+        <span>{{ item.message }}</span>
+      </div>
+    </div>
+    <!-- Sender -->
+    <div
+      class="inline-container own"
+      *ngIf="item.sender._id === currentUser?._id"
+    >
+      <img class="user-avatar" [src]="item.sender.avatar" />
+      <div class="sender chat-message">
+        <span>{{ item.message }}</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="chat-input">
+  <input
+    type="text"
+    class="form-control"
+    (keyup.enter)="sendMessage()"
+    [value]="newMessage"
+    (input)="newMessage = $event.target.value"
+  />
+  <button class="btn" (click)="sendMessage()">
+    <i class="fa fa-paper-plane"></i>
+  </button>
+</div>
